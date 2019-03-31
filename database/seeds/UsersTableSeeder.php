@@ -12,7 +12,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();        
+        User::truncate();
+            User::create([
+                'name' => 'Cassie',
+                'lastname' => 'Marfe',
+                'status' => 1,
+                'phone' => '+111111111',
+                'password' => '111111',
+            ]);
         factory(App\User::class, 100)->create();
     }
 }

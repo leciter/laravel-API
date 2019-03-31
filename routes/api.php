@@ -13,19 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/register', 'AuthController@register');
+Route::group([
 
-Route::post('/login', 'AuthController@login');
+    'middleware' => 'api'
 
-Route::post('/logout', 'AuthController@logout');
+], function ($router) 
+{
+    Route::post('/login', 'AuthController@login')->name('login');
+    Route::post('/logout', 'AuthController@logout')->name('logout');
+    Route::post('/refresh', 'AuthController@refresh')->name('refresh');
+    Route::post('/me', 'AuthController@me');
+    Route::get('/users', 'UserController@index')->name('users.index');
+    Route::post('/users', 'UserController@store')->name('users.store');
+    Route::get('/users/{id}', 'UserController@show')->name('users.show');
+    Route::put('/users/{id}', 'UserController@update')->name('users.update');
+    Route::delete('/users/{id}', 'UserController@delete')->name('users.delete');
+});
 
-Route::middleware('auth:api')->get('/users', 'UserController@index')->name('users.index');
 
-Route::post('/users', 'UserController@store')->name('users.store');
-
-Route::get('/users/{id}', 'UserController@show')->name('users.show'); // по условию задания читать по одному пользователю может и НЕ авториз.user
-
-Route::middleware('auth:api')->put('/users/{id}', 'UserController@update')->name('users.update');
-
-Route::middleware('auth:api')->delete('/users/{id}', 'UserController@delete')->name('users.delete');
 

@@ -20,18 +20,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
-
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        return 'phone';
-    }    
     
     /**
      * Where to redirect users after registration.
@@ -59,10 +48,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6'],
+            'name'      => ['required', 'string', 'max:255'],
+            'lastname'  => ['required', 'string', 'max:255'],
+            'phone'     => ['required', 'string', 'max:255', 'unique:users'],
+            'password'  => ['required', 'string', 'min:6'],
         ]);
     }
 
@@ -73,12 +62,12 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {       
         return User::create([
-            'name' => $data['name'],
-            'lastname' => $data['lastname'],
-            'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
+            'name'      => $data['name'],
+            'lastname'  => $data['lastname'],
+            'phone'     => $data['phone'],
+            'password'  => Hash::make($data['password']),
         ]);
     }
 }

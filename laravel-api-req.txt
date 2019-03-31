@@ -1,0 +1,67 @@
+Все uri после ? содержат внутренние поля соответствующих методов (post, put, delete) для удобства восприятия
+
+1. Request (login):
+http://laravel-api.com/public/api/login?phone=111111111&password=111111
+
+Response:
+{
+  "access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFwaS5jb21cL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTU1NDAzNjE4MCwiZXhwIjoxNTU0MDM5NzgwLCJuYmYiOjE1NTQwMzYxODAsImp0aSI6ImVvalZGeEFYUU11WGdrS2oiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.v-iHHJiMtcFpxKYCY9gA78W-HA25CbN84m0HrpSERuM",
+  "token_type":"bearer",
+  "expires_in":3600
+}
+
+
+2. Request (me/"о себе"):
+http://laravel-api.com/public/api/me?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFwaS5jb21cL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTU1NDAzNjE4MCwiZXhwIjoxNTU0MDM5NzgwLCJuYmYiOjE1NTQwMzYxODAsImp0aSI6ImVvalZGeEFYUU11WGdrS2oiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.v-iHHJiMtcFpxKYCY9gA78W-HA25CbN84m0HrpSERuM&token_type=bearer&expires_in=3600
+
+Response: - запись авторизованного пользователя
+{
+  "id":1,
+  "name":"Cassie",
+  "lastname":"Marfe",
+  "status":1,
+  "phone":"111111111"
+}
+
+3. Request (logout):
+http://laravel-api.com/public/api/logout?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFwaS5jb21cL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTU1NDAzNjE4MCwiZXhwIjoxNTU0MDM5NzgwLCJuYmYiOjE1NTQwMzYxODAsImp0aSI6ImVvalZGeEFYUU11WGdrS2oiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.v-iHHJiMtcFpxKYCY9gA78W-HA25CbN84m0HrpSERuM&token_type=bearer&expires_in=3600
+
+Response:
+{
+  "message":"Successfully logged out"
+}
+
+4. Request (put/update):
+http://laravel-api.com/public/api/users/2/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFwaS5jb21cL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTU1NDAzNjE4MCwiZXhwIjoxNTU0MDM5NzgwLCJuYmYiOjE1NTQwMzYxODAsImp0aSI6ImVvalZGeEFYUU11WGdrS2oiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.v-iHHJiMtcFpxKYCY9gA78W-HA25CbN84m0HrpSERuM&token_type=bearer&expires_in=3600&name=Terminator
+
+Response:
+{
+  "message":"User updated!",
+  "user":{
+    "id":2,
+    "name":"Terminator",
+    "lastname":"Bayer",
+    "status":0,
+    "phone":"+4400173543842"
+  }
+}
+
+5. Request (delete/delete):
+http://laravel-api.com/public/api/users/2/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFwaS5jb21cL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTU1NDAzNjE4MCwiZXhwIjoxNTU0MDM5NzgwLCJuYmYiOjE1NTQwMzYxODAsImp0aSI6ImVvalZGeEFYUU11WGdrS2oiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.v-iHHJiMtcFpxKYCY9gA78W-HA25CbN84m0HrpSERuM&token_type=bearer&expires_in=3600
+
+Response: 204
+
+
+6. Store (create):
+http://laravel-api.com/public/api/users?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFwaS5jb21cL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTU1NDAzNjE4MCwiZXhwIjoxNTU0MDM5NzgwLCJuYmYiOjE1NTQwMzYxODAsImp0aSI6ImVvalZGeEFYUU11WGdrS2oiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.v-iHHJiMtcFpxKYCY9gA78W-HA25CbN84m0HrpSERuM&token_type=bearer&expires_in=3600&name=Graham&lastname=Williams&phone=123456789&password=123123
+
+Response:
+{
+  "message":"Great success! New user created",
+  "user":{
+    "name":"Graham",
+    "lastname":"Williams",
+    "phone":"123456789",
+    "id":102
+  }
+}

@@ -19,7 +19,6 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
     
     /**
      * Get the login username to be used by the controller.
